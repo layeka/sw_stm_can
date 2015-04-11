@@ -1,0 +1,4 @@
+---- LedInit Matches (3 in 3 files) ----
+Anniuled.c (user):void LedInit(void)
+Anniuled.h (user):extern void LedInit(void);
+Main.c (user):	LedInit();

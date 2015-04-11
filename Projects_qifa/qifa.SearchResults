@@ -1,0 +1,11 @@
+---- Qifa_state.AlarmState Matches (10 in 3 files) ----
+Cancmd.c (user):			Qifa_state.AlarmState=0;
+Cancmd.c (user):			Qifa_state.AlarmState=0;
+Main.c (user):		if(Qifa_state.AlarmState&&(Err_Qf_Can_Send.senderr_yunxu==1))	
+Main.c (user):			Qifa_state.AlarmState=0; 
+Main.c (user):		Qifa_state.AlarmState=1;
+Main.c (user):		Qifa_state.AlarmState=1;
+Main.c (user):		Qifa_state.AlarmState=0; 
+Main.c (user):	//if(Qifa_state.AlarmState	&&(Qifa_state.AlarmGet!= buf))	
+Main.c (user):	//	Qifa_state.AlarmState=0; 
+Swqf_output.c (user):	Qifa_state.AlarmState=0;

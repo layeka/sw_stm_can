@@ -1,0 +1,281 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+    Version="10.0"
+    VendorName="SlickEdit"
+    TemplateName="Other C/C++"
+    WorkingDir=".">
+    <Config
+        Name="Debug"
+        Type="cpp"
+        DebugCallbackName="gdb"
+        OutputFile="%bdmotor"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                OutputExts="*.o"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='cc -c -g %i %defd -o "%bd%n.o" "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link">
+                <Exec CmdLine='cc -g -o "%o" %f %libs'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='vsdebugio -prog "%o"'/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%o"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Config
+        Name="Release"
+        Type="cpp"
+        DebugCallbackName="gdb"
+        OutputFile="%bdmotor"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveCurrent"
+                OutputExts="*.o"
+                RunFromDir="%rw">
+                <Exec CmdLine='cc -c -O %i %defd -o "%bd%n.o" "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link">
+                <Exec CmdLine='cc -O -o "%o" %f %libs'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='vsdebugio -prog "%o"'/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%o"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Rules Name="Compile">
+        <Rule
+            InputExts="*.s"
+            OutputExts="*.o"
+            LinkObject="1">
+            <Exec CmdLine='as -o "%bd%n.o" "%f"'/>
+        </Rule>
+    </Rules>
+    <CustomFolders>
+        <Folder
+            Name="Source Files"
+            Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go"></Folder>
+        <Folder
+            Name="Header Files"
+            Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if"></Folder>
+        <Folder
+            Name="Resource Files"
+            Filters="*.ico;*.cur;*.dlg"/>
+        <Folder
+            Name="Bitmaps"
+            Filters="*.bmp"/>
+        <Folder
+            Name="Other Files"
+            Filters=""/>
+    </CustomFolders>
+    <Files AutoFolders="DirectoryView">
+        <Folder Name="../../common">
+            <F N="../../common/algorithm.c"/>
+            <F N="../../common/algorithm.h"/>
+            <F N="../../common/anniuled.c"/>
+            <F N="../../common/anniuled.h"/>
+            <F N="../../common/boot.c"/>
+            <F N="../../common/boot.h"/>
+            <F N="../../common/can.c"/>
+            <F N="../../common/can.h"/>
+            <F N="../../common/can_dmp.c"/>
+            <F N="../../common/can_dmp.h"/>
+            <F N="../../common/can_wp.h"/>
+            <F N="../../common/flash id.c"/>
+            <F N="../../common/flash id.h"/>
+            <F N="../../common/timer.c"/>
+            <F N="../../common/timer.h"/>
+            <F N="../../common/type.h"/>
+        </Folder>
+        <Folder Name="../../Libraries">
+            <Folder Name="CMSIS">
+                <Folder Name="Device">
+                    <Folder Name="ST">
+                        <Folder Name="STM32F0xx">
+                            <Folder Name="Include">
+                                <F N="../../Libraries/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"/>
+                                <F N="../../Libraries/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"/>
+                            </Folder>
+                            <Folder Name="Source">
+                                <Folder Name="Templates">
+                                    <F N="../../Libraries/CMSIS/Device/ST/STM32F0xx/Source/Templates/system_stm32f0xx.c"/>
+                                </Folder>
+                            </Folder>
+                        </Folder>
+                    </Folder>
+                </Folder>
+                <Folder Name="Include">
+                    <F N="../../Libraries/CMSIS/Include/arm_common_tables.h"/>
+                    <F N="../../Libraries/CMSIS/Include/arm_const_structs.h"/>
+                    <F N="../../Libraries/CMSIS/Include/arm_math.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_cm0.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_cm0plus.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_cm3.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_cm4.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_cm4_simd.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_cmFunc.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_cmInstr.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_sc000.h"/>
+                    <F N="../../Libraries/CMSIS/Include/core_sc300.h"/>
+                </Folder>
+                <Folder Name="RTOS">
+                    <F N="../../Libraries/CMSIS/RTOS/cmsis_os.h"/>
+                </Folder>
+            </Folder>
+            <Folder Name="STM32F0xx_CPAL_Driver">
+                <Folder Name="inc">
+                    <F N="../../Libraries/STM32F0xx_CPAL_Driver/inc/stm32f0xx_i2c_cpal.h"/>
+                    <F N="../../Libraries/STM32F0xx_CPAL_Driver/inc/stm32f0xx_i2c_cpal_conf_template.h"/>
+                    <F N="../../Libraries/STM32F0xx_CPAL_Driver/inc/stm32f0xx_i2c_cpal_hal.h"/>
+                </Folder>
+                <Folder Name="src">
+                    <F N="../../Libraries/STM32F0xx_CPAL_Driver/src/stm32f0xx_i2c_cpal.c"/>
+                    <F N="../../Libraries/STM32F0xx_CPAL_Driver/src/stm32f0xx_i2c_cpal_hal.c"/>
+                    <F N="../../Libraries/STM32F0xx_CPAL_Driver/src/stm32f0xx_i2c_cpal_usercallback_template.c"/>
+                </Folder>
+            </Folder>
+            <Folder Name="STM32F0xx_StdPeriph_Driver">
+                <Folder Name="inc">
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_adc.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_can.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_cec.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_comp.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_crc.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_crs.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_dac.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_dbgmcu.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_dma.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_exti.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_flash.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_gpio.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_i2c.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_iwdg.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_misc.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_pwr.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_rcc.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_rtc.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_spi.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_syscfg.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_tim.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_usart.h"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/inc/stm32f0xx_wwdg.h"/>
+                </Folder>
+                <Folder Name="src">
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_adc.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_can.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_cec.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_comp.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_crc.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_crs.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_dac.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_dbgmcu.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_dma.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_exti.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_flash.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_gpio.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_i2c.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_iwdg.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_misc.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_pwr.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_rcc.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_rtc.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_spi.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_syscfg.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_tim.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_usart.c"/>
+                    <F N="../../Libraries/STM32F0xx_StdPeriph_Driver/src/stm32f0xx_wwdg.c"/>
+                </Folder>
+            </Folder>
+        </Folder>
+        <Folder Name="../USER">
+            <F N="../USER/cancmd.c"/>
+            <F N="../USER/cancmd.h"/>
+            <F N="../USER/main.c"/>
+            <F N="../USER/main.h"/>
+            <F N="../USER/pwm.c"/>
+            <F N="../USER/pwm.h"/>
+            <F N="../USER/step.c"/>
+            <F N="../USER/step.h"/>
+            <F N="../USER/StepRefpwm.c"/>
+            <F N="../USER/StepRefpwm.h"/>
+            <F N="../USER/stm32f0xx_conf.h"/>
+            <F N="../USER/stm32f0xx_it.c"/>
+            <F N="../USER/stm32f0xx_it.h"/>
+        </Folder>
+    </Files>
+</Project>

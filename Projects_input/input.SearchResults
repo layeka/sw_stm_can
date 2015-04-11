@@ -1,0 +1,4 @@
+---- Input_pra.REC_Data_Enable Matches (3 in 2 files) ----
+Cancmd.c (user):	Input_pra.REC_Data_Enable = ( ( buf[ 3] << 8 ) + buf[ 2 ])&0xFFFF;
+Io_input.c (user):	Input_pra.REC_Data_Enable = 0 ;
+Io_input.c (user):		buf32 = (Input_pra.IO_Input_Real ^ Input_pra.REC_DataTure ) & Input_pra.REC_Data_Enable;

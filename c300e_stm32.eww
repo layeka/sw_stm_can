@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\Projects_boot\bootloader.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\Projects_input\input.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\Projects_motor\motor.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\Projects_qifa\qifa.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>build workspace</name>
+      <member>
+        <project>bootloader</project>
+        <configuration>Releas_Motor</configuration>
+      </member>
+      <member>
+        <project>bootloader</project>
+        <configuration>Release_Input</configuration>
+      </member>
+      <member>
+        <project>bootloader</project>
+        <configuration>Release_Qifa</configuration>
+      </member>
+      <member>
+        <project>input</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>qifa</project>
+        <configuration>Release</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>
+
+

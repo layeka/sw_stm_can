@@ -1,0 +1,15 @@
+---- ChannelPulse Matches (14 in 3 files) ----
+Step.c (user):		//SetRefPwm(Moto, ChannelPulse[Moto]/2);
+Step.c (user):		//SetRefPwm(Moto, ChannelPulse[Moto]);
+StepRefpwm.c (user):uint16_t ChannelPulse[4] = {0};
+StepRefpwm.c (user):  ChannelPulse[0] = (uint16_t) (((uint32_t) (146) * (TimerPeriod - 1)) / 1000);
+StepRefpwm.c (user):  ChannelPulse[1] = (uint16_t) (((uint32_t) (146) * (TimerPeriod - 1)) / 1000);
+StepRefpwm.c (user):  //ChannelPulse[2] = (uint16_t) (((uint32_t) 25 * (TimerPeriod - 1)) / 100);
+StepRefpwm.c (user):  ChannelPulse[2] = (uint16_t) (((uint32_t) (146) * (TimerPeriod - 1)) / 1000);
+StepRefpwm.c (user):  //ChannelPulse[3] = (uint16_t) (((uint32_t) (440) * (TimerPeriod- 1)) / 1000);
+StepRefpwm.c (user):  ChannelPulse[3] = (uint16_t) (((uint32_t) (146) * (TimerPeriod - 1)) / 1000);
+StepRefpwm.c (user):  TIM_OCInitStructure.TIM_Pulse = ChannelPulse[0];
+StepRefpwm.c (user):  TIM_OCInitStructure.TIM_Pulse = ChannelPulse[1];
+StepRefpwm.c (user):   TIM_OCInitStructure.TIM_Pulse = ChannelPulse[2];
+StepRefpwm.c (user):  TIM_OCInitStructure.TIM_Pulse = ChannelPulse[3];
+StepRefpwm.h (user):extern uint16_t ChannelPulse[4];
