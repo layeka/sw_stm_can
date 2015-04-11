@@ -91,7 +91,7 @@ typedef struct __midustepctrpra{
                                     //  3表示暂停状态
   uint8_t    fg_clear;			    //马达到达零位时 是否需要清零PLUS
   uint8_t    MotoRunDir;            //马达方向
-  uint8_t    shiji_zero_zhuangtai;	//实际零位状态
+  //uint8_t    shiji_zero_zhuangtai;	//实际零位状态
   uint8_t    MotoZeroState[3];      // 连续3次的马达零位，0上上次零位状态，1澹:上次，2当前零位状态
   uint8_t    MotoStopData[3];       //停止条件 与MotoZeroState对应
                                     //  MotoStopData与MotoZeroState 相等时停止并清零PULE，DANGQIANDUMU等数据
@@ -118,7 +118,7 @@ typedef struct {
     uint8_t  stat;
     uint8_t  dir;
     uint8_t  stopflag;
-    uint8_t __dummy;
+    uint8_t  cmdcode;
     uint16_t puls;
     uint16_t speedHz;
     uint64_t timertick;

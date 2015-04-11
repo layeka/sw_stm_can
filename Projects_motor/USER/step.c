@@ -322,9 +322,9 @@ void MotoDuMuInit(void) {
         MiduMotoRefCtr(i, ENABLE);
         MiduMotoFreeCtr(i, DISABLE);
         MiduMotoCtrPra[i].MotoRunState = MOTOSTOPHALF;
-        //MiduMotoCtrPra[i].MotoZeroState[2]=GetMiduMotoZero(i);
-        //MiduMotoCtrPra[i].MotoZeroState[1]=GetMiduMotoZero(i);
-        MiduMotoCtrPra[i].MotoZeroState[i] = GetMiduMotoZero(i);
+        MiduMotoCtrPra[i].MotoZeroState[2]=GetMiduMotoZero(i);
+        MiduMotoCtrPra[i].MotoZeroState[1]=GetMiduMotoZero(i);
+        MiduMotoCtrPra[i].MotoZeroState[0] = GetMiduMotoZero(i);
         MiduMotoCtrPra[i].MotoDumuDangqian = 0;
         MiduMotoCtrPra[i].MotoDumuPuls = 0;
         MiduMotoCtrPra[i].MotoPwmPinState = 0;
@@ -342,51 +342,8 @@ void MotoDuMuInit(void) {
 }
 
 
-static void motorcmdreturn(int motor, int pulse, int time, int stopflag, uint8_t dir) {
-    DEFINE_CAN_WP_FRAME(wpt);
-    wpt.funcode = CANCMD_DUMUMOTOGO_LOW;
-    wpt.dlc = 8;
-    wpt.data[0] = motor;
-    wpt.data[1] = (uint8_t)pulse;
-    wpt.data[2] = (uint8_t)(pulse >> 8);
-    wpt.data[4] = (uint8_t)time;
-    wpt.data[5] = (uint8_t)(time >> 8);
-    wpt.data[6] = 0;
-    wpt.data[7] = (!!dir <<6) | (uint8_t)stopflag;
-    wpSend(&wpt);
-}
 
 
-
-void scanMotorCmd(void) {
-    MOTOR_CMD *cmd;
-    for (int i = 0; i < MiDuMotoNum; i++) {
-        if (ringBufRead(&motorcmdbuf[i], &cmd)) {
-            switch (cmd->stat) {
-            case MOTOR_CMD_STAT_WAITE:
-                if ((cmd.speedHz >= DUMUMOTOSTOPHZ) && (cmd->puls <= 15000)) {
-                    cmd->stat = MOTOR_CMD_STAT_BUSY;
-                    MotoDumuRun(i, cmd->dir, cmd->puls,
-                                cmd->stopflag, cmd->speedH);
-                    cmd->timertick = timerTick1ms;
-                } else {
-                    ringBufPop_noread(&motorcmdbuf);
-                }
-                break;
-            case MOTOR_CMD_STAT_BUSY:
-                if (MiduMotoCtrPra[i].MotoRunState == MOTOSTOPHALF
-                    || MiduMotoCtrPra[i].MotoRunState == MOTOSTOPFERR) {
-                    motorcmdreturn(i, cmd->puls, timerTick1ms - cmd->timertick,
-                                   cmd->stopflag,cmd->dir);
-                    ringBufPop_noread(&motorcmdbuf);
-                }
-                break;
-            default:
-                break;
-            }
-        }
-    }
-}
 
 
 

@@ -112,10 +112,11 @@ void CanCmd_ResetDumu(CAN_WP *wp) {
 
 //读取度目马达状态
 void  CanCmd_GetDumuMotoState(CAN_WP *wp) {
-    uint16_t i, j;
-    i = 0X03;
-    uint32 moto = wp->data[0] & 0x03;
-    MiduMotoCtrPra[moto].shiji_zero_zhuangtai = GetMiduMotoZero(moto);
+    uint32 moto = wp->data[0];
+    if (moto>=MiDuMotoNum) {
+        return;
+    }
+    //MiduMotoCtrPra[moto].shiji_zero_zhuangtai = GetMiduMotoZero(moto);
     DEFINE_CAN_WP_FRAME(twp);
     twp.funcode = CANCMD_GETDUMUMOTOSTATE;
     twp.desid = wp->srcid;
@@ -127,19 +128,14 @@ void  CanCmd_GetDumuMotoState(CAN_WP *wp) {
     twp.data[4] = (MiduMotoCtrPra[moto].MotoRunHz) >> 8;
     twp.data[5] = MiduMotoCtrPra[moto].MotoRunSetHz & 0xff;
     twp.data[6] = (MiduMotoCtrPra[moto].MotoRunSetHz) >> 8;
-    i = 0;
-    j = MiduMotoCtrPra[moto].MotoRunDir;
-    i = j << 6;
-    j = MiduMotoCtrPra[moto].MotoRunState;
-    i = i | (j << 4);
-    j = MiduMotoCtrPra[moto].shiji_zero_zhuangtai;
-    i = i | (j << 3);
-    j = MiduMotoCtrPra[moto].MotoZeroState[2];
-    i = i | (j << 2);
-    j = MiduMotoCtrPra[moto].MotoZeroState[1];
-    j = j << 1;
-    i = i | j | MiduMotoCtrPra[moto].MotoZeroState[0];
-    twp.data[7] = (uint8_t)i;
+
+    uint8_t stat =  MiduMotoCtrPra[moto].MotoRunDir<<6
+                    | MiduMotoCtrPra[moto].MotoRunState<<4
+                    | GetMiduMotoZero(moto)<<3
+                    | MiduMotoCtrPra[moto].MotoZeroState[2]<<2
+                    | MiduMotoCtrPra[moto].MotoZeroState[1]<<1
+                    | MiduMotoCtrPra[moto].MotoZeroState[0];
+    twp.data[7] = stat;
     wpSend(&twp);
 }
 
@@ -198,15 +194,19 @@ void Can_Cmd_Lockcurrent_Set(CAN_WP *wp) {
 //度目电机执行CAN命令
 void CanCmd_DumuMotoGo(CAN_WP *wp) {
 
-    MOTOR_CMD cmd;   
+    MOTOR_CMD cmd;
     uint32 moto = wp->data[0];
-    if (moto>=4) {
+    if (wp->dlc!=8) {
         return;
     }
-    cmd.puls = wp->data[2]<<8 | wp->data[1];;
-    cmd.speedHz = wp->data[4] << 8 | wp->data[3];;
-    cmd.stopflag = wp->data[5] & 0x3f;;
+    if (moto >= 4) {
+        return;
+    }
+    cmd.puls = wp->data[2]<<8 | wp->data[1];
+    cmd.speedHz = wp->data[4] << 8 | wp->data[3];
+    cmd.stopflag = wp->data[5] & 0x3f;
     cmd.stat = MOTOR_CMD_STAT_WAITE;
+    cmd.cmdcode = wp->data[7];
     cmd.dir = (wp->data[5] & 0x40)?OUT_DIR_ZHENG:OUT_DIR_FAN;
     if ((cmd.speedHz >= DUMUMOTOSTOPHZ) && (cmd.puls <= 15000)) {
         ringBufPush(&motorcmdbuf[moto],&cmd);
@@ -214,6 +214,52 @@ void CanCmd_DumuMotoGo(CAN_WP *wp) {
 }
 
 
+static void motorcmdreturn(int motor, int pulse, int time, int stopflag, uint8_t dir,uint8_t cmdcode) {
+    DEFINE_CAN_WP_FRAME(wpt);
+    wpt.funcode = CANCMD_DUMUMOTOGO_LOW;
+    wpt.dlc = 8;
+    wpt.data[0] = motor;
+    wpt.data[1] = (uint8_t)pulse;
+    wpt.data[2] = (uint8_t)(pulse >> 8);
+    wpt.data[3] = (uint8_t)time;
+    wpt.data[4] = (uint8_t)(time >> 8);
+    wpt.data[5] = (!!dir <<6) | (uint8_t)stopflag;
+    wpt.data[6] = 0;
+    wpt.data[7] = cmdcode;
+    wpSend(&wpt);
+}
+
+
+void scanMotorCmd(void) {
+    MOTOR_CMD *cmd;
+    for (int i = 0; i < MiDuMotoNum; i++) {
+        if (ringBufRead(&motorcmdbuf[i], (void **)&cmd)) {
+            switch (cmd->stat) {
+            case MOTOR_CMD_STAT_WAITE:
+                if ((cmd->speedHz >= DUMUMOTOSTOPHZ) && (cmd->puls <= 15000)) {
+                    cmd->stat = MOTOR_CMD_STAT_BUSY;
+                    MotoDumuRun(i, cmd->dir, cmd->puls,
+                                cmd->stopflag, cmd->speedHz);
+                    cmd->timertick = timerTick1ms;
+                } else {
+                    ringBufPop_noread(&motorcmdbuf[i]);
+                }
+                break;
+            case MOTOR_CMD_STAT_BUSY:
+                if (MiduMotoCtrPra[i].MotoRunState == MOTOSTOPHALF
+                    || MiduMotoCtrPra[i].MotoRunState == MOTOSTOPFERR) {
+                    unsigned char zero = MiduMotoCtrPra[i].MotoZeroState[2]<<2 | MiduMotoCtrPra[i].MotoZeroState[1]<<1 | MiduMotoCtrPra[i].MotoZeroState[0];
+                    motorcmdreturn(i, cmd->puls, timerTick1ms - cmd->timertick,
+                                   zero,cmd->dir,cmd->cmdcode);
+                    ringBufPop_noread(&motorcmdbuf[i]);
+                }
+                break;
+            default:
+                break;
+            }
+        }
+    }
+}
 
 
 void doCmdWp(CAN_WP *wp) {

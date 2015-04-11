@@ -35,6 +35,7 @@ extern void CanCmd_GetDumuMotoState(CAN_WP *wp);
 //extern uint8_t  CanCmd_ResetDumu(void);
 extern void CanCmd_ResetDumu(CAN_WP *wp);
 extern void CanCmd_SetDumuMotoHz(CAN_WP *wp);
+extern void scanMotorCmd(void);
 
 
 #endif

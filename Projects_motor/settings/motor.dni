@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=908807189
+Checksum=-18602038
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -121,7 +121,8 @@ Exclusions=
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Count=0
+Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\USER\cancmd.c}.274.9" 0 0 1 "" 0 "" 0
+Count=1
 [Aliases]
 A0=_ "D:\code\C300E-BUJIN-APP\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f042.s" ""
 Count=1
