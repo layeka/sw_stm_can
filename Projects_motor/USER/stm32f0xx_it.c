@@ -85,7 +85,7 @@ void TIM1_CC_IRQHandler(void) {
         unsigned int ch = MiduMotoCtrPra[i].stepTimerChanel;
         if (TIM_GetITStatus(TIM1, ch) != RESET){
             TIM_ClearITPendingBit(TIM1, ch);
-            MotoDumuRunScan(i);
+            MotoDumuProcess(i);
         }
     }
 }

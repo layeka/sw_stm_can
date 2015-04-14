@@ -12,26 +12,19 @@
 
 
 
+
+
 void CanCmd_ResetDumu(CAN_WP *wp) {
-    if (wp->dlc % 2 == 0) {
+    if (wp->dlc % 2 != 0) {
         return;
     }
     unsigned int num = wp->dlc / 2;
     unsigned int imotor;
-    DEFINE_CAN_WP_FRAME(twp);
-    twp.dlc = wp->dlc;
-    twp.funcode = CANCMD_RESETDUMU;
-    twp.desid = wp->srcid;
-    for (int i = 0; i < num; i++) {
+    for (int i = 0; i < MIN(num, MiDuMotoNum); i++) {
         imotor = wp->data[i * 2];
         uint32 val = wp->data[i * 2 + 1];
-        if (val == 0x80 || val == 0x82) {
-            ResetDumu(imotor, val);
-            twp.data[i * 2] = imotor;
-            twp.data[i * 2 + 1] = MiduMotoCtrPra[imotor].MotoRunState;
-        }
+        ResetDumu(imotor, val);
     }
-    wpSend(&twp);
 }
 
 
@@ -111,31 +104,23 @@ void CanCmd_ResetDumu(CAN_WP *wp) {
 
 
 //读取度目马达状态
-void  CanCmd_GetDumuMotoState(CAN_WP *wp) {
+void CanCmd_GetDumuMotoState(CAN_WP *wp) {
     uint32 moto = wp->data[0];
-    if (moto>=MiDuMotoNum) {
+    if (moto >= MiDuMotoNum) {
         return;
     }
     //MiduMotoCtrPra[moto].shiji_zero_zhuangtai = GetMiduMotoZero(moto);
     DEFINE_CAN_WP_FRAME(twp);
     twp.funcode = CANCMD_GETDUMUMOTOSTATE;
     twp.desid = wp->srcid;
-    twp.dlc = 8;
+    twp.dlc = 4;
     twp.data[0] = moto;
     twp.data[1] = MiduMotoCtrPra[moto].MotoDumuDangqian & 0xff;
     twp.data[2] = MiduMotoCtrPra[moto].MotoDumuDangqian >> 8;
-    twp.data[3] = MiduMotoCtrPra[moto].MotoRunHz & 0xff;
-    twp.data[4] = (MiduMotoCtrPra[moto].MotoRunHz) >> 8;
-    twp.data[5] = MiduMotoCtrPra[moto].MotoRunSetHz & 0xff;
-    twp.data[6] = (MiduMotoCtrPra[moto].MotoRunSetHz) >> 8;
-
-    uint8_t stat =  MiduMotoCtrPra[moto].MotoRunDir<<6
-                    | MiduMotoCtrPra[moto].MotoRunState<<4
-                    | GetMiduMotoZero(moto)<<3
-                    | MiduMotoCtrPra[moto].MotoZeroState[2]<<2
-                    | MiduMotoCtrPra[moto].MotoZeroState[1]<<1
-                    | MiduMotoCtrPra[moto].MotoZeroState[0];
-    twp.data[7] = stat;
+    uint8_t stat = MiduMotoCtrPra[moto].MotoRunState << 6 |
+                   MiduMotoCtrPra[moto].MotoRunDir << 5 |
+                   GetMiduMotoZero(moto) << 3;
+    twp.data[3] = stat;
     wpSend(&twp);
 }
 
@@ -162,17 +147,17 @@ void Can_Cmd_Workcurrent_Set(CAN_WP *wp) {
 
 
 void Can_Cmd_Lockcurrent_Set(CAN_WP *wp) {
-    if (wp->dlc%2!=0) {
+    if (wp->dlc % 2 != 0) {
         return;
     }
-    unsigned int num = wp->dlc/2;
+    unsigned int num = wp->dlc / 2;
     uint8_t Current_value;
     for (int i = 0; i < num; i++) {
-        uint32 imotor = wp->data[i*2];
-        if (imotor>=MIDUMOTOBEGINHZ) {
-            continue ;
+        uint32 imotor = wp->data[i * 2];
+        if (imotor >= MIDUMOTOBEGINHZ) {
+            continue;
         }
-        Current_value =  MAX(wp->data[i * 2 + 1], Max_Current_Num);
+        Current_value = MAX(wp->data[i * 2 + 1], Max_Current_Num);
         if (Current_value > 0) {
             HalfPulseNum[imotor] = Current_value - 1;
             //若当前是半流锁定强制改变锁定电流
@@ -191,43 +176,34 @@ void Can_Cmd_Lockcurrent_Set(CAN_WP *wp) {
 
 
 
+
+
+
 //度目电机执行CAN命令
 void CanCmd_DumuMotoGo(CAN_WP *wp) {
 
-    MOTOR_CMD cmd;
+    MOTOR_CMD motor_cmd;
     uint32 moto = wp->data[0];
-    if (wp->dlc!=8) {
+    if (wp->dlc != 8) {
         return;
     }
     if (moto >= 4) {
         return;
     }
-    cmd.puls = wp->data[2]<<8 | wp->data[1];
-    cmd.speedHz = wp->data[4] << 8 | wp->data[3];
-    cmd.stopflag = wp->data[5] & 0x3f;
-    cmd.stat = MOTOR_CMD_STAT_WAITE;
-    cmd.cmdcode = wp->data[7];
-    cmd.dir = (wp->data[5] & 0x40)?OUT_DIR_ZHENG:OUT_DIR_FAN;
-    if ((cmd.speedHz >= DUMUMOTOSTOPHZ) && (cmd.puls <= 15000)) {
-        ringBufPush(&motorcmdbuf[moto],&cmd);
+    CMD_MOTORGO *cmd;
+    cmd = (CMD_MOTORGO *)wp->data;
+    motor_cmd.flag = cmd->flag;
+    motor_cmd.puls = cmd->puls;
+    motor_cmd.speedHz = cmd->speedHz;
+    motor_cmd.cmdcode = cmd->cmdcode;
+    motor_cmd.stat = MOTOR_CMD_STAT_WAITE;
+    motor_cmd.stopData = cmd->stopData;
+
+    if ((cmd->speedHz >= DUMUMOTOSTOPHZ) && (cmd->puls <= 15000)) {
+        ringBufPush(&motorcmdbuf[moto], &motor_cmd);
     }
 }
 
-
-static void motorcmdreturn(int motor, int pulse, int time, int stopflag, uint8_t dir,uint8_t cmdcode) {
-    DEFINE_CAN_WP_FRAME(wpt);
-    wpt.funcode = CANCMD_DUMUMOTOGO_LOW;
-    wpt.dlc = 8;
-    wpt.data[0] = motor;
-    wpt.data[1] = (uint8_t)pulse;
-    wpt.data[2] = (uint8_t)(pulse >> 8);
-    wpt.data[3] = (uint8_t)time;
-    wpt.data[4] = (uint8_t)(time >> 8);
-    wpt.data[5] = (!!dir <<6) | (uint8_t)stopflag;
-    wpt.data[6] = 0;
-    wpt.data[7] = cmdcode;
-    wpSend(&wpt);
-}
 
 
 void scanMotorCmd(void) {
@@ -238,8 +214,9 @@ void scanMotorCmd(void) {
             case MOTOR_CMD_STAT_WAITE:
                 if ((cmd->speedHz >= DUMUMOTOSTOPHZ) && (cmd->puls <= 15000)) {
                     cmd->stat = MOTOR_CMD_STAT_BUSY;
-                    MotoDumuRun(i, cmd->dir, cmd->puls,
-                                cmd->stopflag, cmd->speedHz);
+                    cmd->flag |= 0x10; //force return
+                    MotoDumuRun(i, cmd->flag | 0x80,
+                                cmd->puls, cmd->speedHz, cmd->stopData);
                     cmd->timertick = timerTick1ms;
                 } else {
                     ringBufPop_noread(&motorcmdbuf[i]);
@@ -247,11 +224,30 @@ void scanMotorCmd(void) {
                 break;
             case MOTOR_CMD_STAT_BUSY:
                 if (MiduMotoCtrPra[i].MotoRunState == MOTOSTOPHALF
-                    || MiduMotoCtrPra[i].MotoRunState == MOTOSTOPFERR) {
-                    unsigned char zero = MiduMotoCtrPra[i].MotoZeroState[2]<<2 | MiduMotoCtrPra[i].MotoZeroState[1]<<1 | MiduMotoCtrPra[i].MotoZeroState[0];
-                    motorcmdreturn(i, cmd->puls, timerTick1ms - cmd->timertick,
-                                   zero,cmd->dir,cmd->cmdcode);
+                    || MiduMotoCtrPra[i].MotoRunState == MOTOSTOPFREE) {
                     ringBufPop_noread(&motorcmdbuf[i]);
+                    if (cmd->flag & MOTOR_CMDGO_RETURN_FLAG_RETURN) {
+                        unsigned char stopflag = MiduMotoCtrPra[i].MotoStopData;
+                        uint16_t timedif = timerTick1ms - cmd->timertick;
+                        DEFINE_CAN_WP_FRAME(wpt);
+                        wpt.funcode = CANCMD_DUMUMOTOGO_LOW;
+                        wpt.dlc = 8;
+                        wpt.data[0] = i;
+                        wpt.data[1] = (uint8_t)MiduMotoCtrPra[i].MotoDumuDangqian;
+                        wpt.data[2] = (uint8_t)(MiduMotoCtrPra[i].MotoDumuDangqian >> 8);
+                        wpt.data[3] = (uint8_t)timedif;
+                        wpt.data[4] = (uint8_t)(timedif >> 8);
+                        uint8_t flag = 0;
+                        flag |= MiduMotoCtrPra[i].MotoRunState << MOTOR_CMDGO_RETURN_FLAG_STAT_SHIFT;
+                        flag |= MiduMotoCtrPra[i].MotoRunDir << MOTOR_CMDGO_RETURN_FLAG_DIR_SHIFT;
+                        flag |= GetMiduMotoZero(i) << MOTOR_CMDGO_RETURN_FLAG_PROBE_SHIFT;
+                        flag |= MiduMotoCtrPra[i].clearPosFlag << MOTOR_CMDGO_FLAG_CLEAR_POS_SHIFT;
+                        flag |= MiduMotoCtrPra[i].stopFlag;
+                        wpt.data[5] = flag;
+                        wpt.data[6] = stopflag;
+                        wpt.data[7] = cmd->cmdcode;
+                        wpSend(&wpt);
+                    }
                 }
                 break;
             default:

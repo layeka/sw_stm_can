@@ -73,7 +73,7 @@
 #define  MIDUMOTOHZMAX         2200
 #define  MIDUMOTOBEGINHZ        500
 
-#define  MOTOSTOPFERR              0
+#define  MOTOSTOPFREE              0
 #define  MOTOWORKING               1
 #define  MOTOSTOPHALF              2
 #define  MOTOSTOPPAUSE             3
@@ -89,11 +89,20 @@ typedef struct __midustepctrpra{
                                     //  1   表示全流工作状态
                                     //  2表示半流待机状态
                                     //  3表示暂停状态
-  uint8_t    fg_clear;			    //马达到达零位时 是否需要清零PLUS
-  uint8_t    MotoRunDir;            //马达方向
-  //uint8_t    shiji_zero_zhuangtai;	//实际零位状态
-  uint8_t    MotoZeroState[3];      // 连续3次的马达零位，0上上次零位状态，1澹:上次，2当前零位状态
-  uint8_t    MotoStopData[3];       //停止条件 与MotoZeroState对应
+  uint8_t    clearPos;			    //马达到达零位时 是否需要清零PLUS
+  uint8_t    ProbeEn;               //1:ignore
+  uint8_t    cmd_stopState;
+
+
+  uint8_t    clearPosFlag;
+  uint8_t    stopFlag;
+
+
+  uint8_t    MotoRunDir;            //dir
+  uint8_t    MotoStopData;
+  uint8_t    MotoZeroData;
+  //uint8_t    MotoZeroState[3];      // 连续3次的马达零位，0上上次零位状态，1澹:上次，2当前零位状态
+  //uint8_t    MotoStopData[3];       //停止条件 与MotoZeroState对应
                                     //  MotoStopData与MotoZeroState 相等时停止并清零PULE，DANGQIANDUMU等数据
                                     //当MotoStopData中的数据不是0也不是1时，表示忽略零位状淘诵鞋
   uint8_t    MotoPwmPinState ;      // PWM输出脚状态
@@ -107,17 +116,23 @@ typedef struct __midustepctrpra{
 
   uint32_t   stepTimerChanel;
 
+  uint32_t (*getcapture)(TIM_TypeDef* TIMx);
+  void (*setcompare)(TIM_TypeDef* TIMx, uint32_t Compare);
+
 }MIDUSTEPCTRPRA;
+
 
 
 #define MOTOR_CMD_STAT_WAITE   0
 #define MOTOR_CMD_STAT_BUSY    1
 #define MOTOR_CMD_STAT_FINISH  2
 
+
+
 typedef struct {
     uint8_t  stat;
-    uint8_t  dir;
-    uint8_t  stopflag;
+    uint8_t  flag;
+    uint8_t  stopData;
     uint8_t  cmdcode;
     uint16_t puls;
     uint16_t speedHz;
@@ -149,8 +164,8 @@ extern void MiduMotoRefCtr(uint8_t Moto,uint8_t NewState);
 extern void GetMotoAddValue(uint8_t  Moto);
 extern void MotoDuMuInit(void);
 extern void GetMotoDumuStopData(uint8_t Moto,uint8_t  Stop);
-extern void MotoDumuRunScan(uint8_t Moto);
-extern void MotoDumuRun(uint8_t Moto,uint8_t Dir,uint16_t Plus,uint8_t Stop ,uint16_t HzMax);
+extern void MotoDumuProcess(uint8_t Moto);
+extern void MotoDumuRun(uint8_t Moto, uint8_t flag, uint16_t Plus, uint16_t HzMax, uint8_t stopdata) ;
 extern void GetMotoAddTab(uint8_t  Moto,uint16_t MaxHz);
 extern MIDUSTEPCTRPRA   MiduMotoCtrPra[MiDuMotoNum];
 
