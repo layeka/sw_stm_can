@@ -4,6 +4,8 @@ IO_INPUT.C
 #include "swqf_output.h"
 #include "pwm.h"
 #include "timer.h"
+#include "algorithm.h"
+
 
 
 
@@ -149,12 +151,15 @@ void QifaPwmCtr(uint8_t value) {
 
 
 void Qifa_Io_Out_Single(uint8_t onoff, uint8_t num) {
+  if(num>=lenthof(Output_Single)){
+    return;
+  }
     swqfout(num, onoff) ;
     if (onoff) {
-        GPIO_SetBits(Output_Single[ num ].port, Output_Single[ num ].bit);
+        //GPIO_SetBits(Output_Single[ num ].port, Output_Single[ num ].bit);
         Qifa_state.fg_qifa_out |= (0X01 << num);
     } else {
-        GPIO_ResetBits(Output_Single[ num ].port, Output_Single[ num ].bit);
+        //GPIO_ResetBits(Output_Single[ num ].port, Output_Single[ num ].bit);
         Qifa_state.fg_qifa_out &= ~(0X01 << num);
     }
 }

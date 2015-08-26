@@ -45,6 +45,8 @@ extern void ringBufClear(RINGBUF *ringBuf);
 extern void MD5Init(MD5_CTX *context);
 extern void MD5Update(MD5_CTX *context, unsigned char *input, unsigned int inputlen);
 extern void MD5Final(MD5_CTX *context, unsigned char digest[16]);
+extern void bubbleSortAscend_I32(int *buf, unsigned int nNum);
+extern int sum(int *buf, unsigned int nNum);
 
 
 

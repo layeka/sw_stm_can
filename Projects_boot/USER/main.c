@@ -23,8 +23,6 @@ int main(void) {
     SYSCFG_MemoryRemapConfig(SYSCFG_MemoryRemap_SRAM);
     Flash_Device_ID_STM = Get_Flash_ID();
 
-    //系统外部时钟8M,PLL6倍，48M
-    SystemInit();
     timerTick1msInit();
     LedInit();
     //AnniuInit();

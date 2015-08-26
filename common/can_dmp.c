@@ -37,6 +37,26 @@ void canRcvHandler(CanRxMsg *msg){
 }
 
 
+extern  uint8  canBOFs;
+
+static void heartbeat(CAN_WP *wp){
+  if(DeviceCanAddr==0){
+     return;
+  }
+    uint32 esr = CAN->ESR;
+    DEFINE_CAN_WP_FRAME(twp);
+    twp.funcode = wp->funcode;
+    twp.desid = wp->srcid;
+    twp.dlc = 5;
+    twp.data[0]= (uint8)esr;
+    twp.data[1]= (uint8)(esr>>8);
+    twp.data[2]= (uint8)(esr>>16);
+    twp.data[3]= (uint8)(esr>>24);
+    twp.data[4] = canBOFs;
+    wpSend(&twp);
+}
+
+
 extern __weak void doCmdWp(CAN_WP *wp);
 
 void ScanCmd(void) {
@@ -45,7 +65,11 @@ void ScanCmd(void) {
         if (IS_CANMSG_WPCMD(&msg)) {
             CAN_WP wp;
             CANRxMSG_TO_CANWP(&wp, &msg);
-            doCmdWp(&wp);
+            if(wp.funcode==CAN_WP_FUNCODE_HEARDBEAT){
+                heartbeat(&wp);
+            }else{
+                doCmdWp(&wp);
+            }
         } else if (IS_CANMSG_DMPCMD_RCV(&msg)) {
             CAN_DMP dmp;
             CANRxMSG_TO_CANDMP(&dmp, &msg);
@@ -340,10 +364,22 @@ void dmpWaitSetAdd(CAN_DMP *dmp) {
 
 void dmpReadWpId(CAN_DMP *dmp) {
     DEFINE_CAN_DMP_FRAME(dmpt);
-    dmpt.dlc = 2;
+    dmpt.dlc = 3;
     dmpt.data[0] = CANCMD_CHECKID;
     dmpt.data[1] = (uint8)DeviceCanAddr;
     dmpt.data[2] = (uint8)(DeviceCanAddr >> 8);
+    dmpSend(&dmpt);
+}
+
+
+void dmpReadUid(CAN_DMP *dmp){
+    DEFINE_CAN_DMP_FRAME(dmpt);
+    dmpt.dlc = 5;
+    dmpt.data[0] = CANCMD_READUID;
+    dmpt.data[1] = (uint8)Flash_Device_ID_STM;
+    dmpt.data[2] = (uint8)(Flash_Device_ID_STM >> 8);
+    dmpt.data[3] = (uint8)(Flash_Device_ID_STM >> 16);
+    dmpt.data[4] = (uint8)(Flash_Device_ID_STM >> 24);
     dmpSend(&dmpt);
 }
 
@@ -359,6 +395,9 @@ void doCmdDmp(CAN_DMP *dmp) {
         break;
     case CANCMD_CHECKID:
         dmpReadWpId(dmp);
+        break;
+    case CANCMD_READUID:
+        dmpReadUid(dmp);
         break;
     case CANCMD_SETADRR:
         dmpSetAddr(dmp);

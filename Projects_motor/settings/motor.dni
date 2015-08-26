@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=1710362943
+Checksum=-1960349413
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -50,6 +50,8 @@ Enabled=0
 ShowSource=1
 [struct_types]
 Fmt0=CAN_DMP-uid	4	0
+Fmt1=MIDUSTEPCTRPRA-MotoStopData	4	0
+Fmt2=MIDUSTEPCTRPRA-MotoZeroData	4	0
 [Trace2]
 Enabled=0
 ShowSource=0
@@ -99,10 +101,6 @@ GraphEnabled=0
 ShowTimeLog=1
 ShowTimeSum=1
 SumSortOrder=0
-[Disassemble mode]
-mode=0
-[Breakpoints2]
-Count=0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -110,10 +108,6 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
-[Aliases]
-A0=_ "D:\code\C300E-BUJIN-APP\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f042.s" ""
-Count=1
-SuppressDialog=0
 [PowerProbe]
 Frequency=10000
 Probe0=I0
@@ -126,3 +120,11 @@ Mode=3
 Graph=0
 Symbiont=0
 Exclusions=
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Count=0
+[Aliases]
+A0=_ "D:\code\C300E-BUJIN-APP\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f042.s" ""
+Count=1
+SuppressDialog=0

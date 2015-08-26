@@ -13,7 +13,7 @@
 
 #define Management_global_broadcast           0x07ffffff//管理协议下全局广播management protocol  broadcast
 
-
+extern  uint8  canBOFs;
 
 extern uint8_t CanSend(CanTxMsg *msg);
 

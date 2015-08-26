@@ -16,37 +16,35 @@
 
 
 uint8_t CanCmd_setAlarm(CAN_WP *wp) {
-    unsigned cmdnum = wp->dlc;
-    if (cmdnum % 4 != 0) {
+    if (wp->dlc != 8) {
         return 0;
     }
-    cmdnum = cmdnum / 4;
-    for (int i = 0; i < cmdnum; i++) {
-        CAN_CMD_SET_ALARM *cmd = (CAN_CMD_SET_ALARM *)wp->data + i;
-        unsigned int bit = cmd->bit;
-        if (bit >= Max_Input_Single) {
-            break;
-        }
-        if (cmd->en == 0) {
-            io_scan[bit].en = 0;
+    CAN_CMD_SET_ALARM *cmd = (CAN_CMD_SET_ALARM *)wp->data;
+    unsigned int bit = cmd->bit;
+    if (bit >= Max_Input_Single) {
+        return 0;
+    }
+    if (cmd->en == 0) {
+        io_scan[bit].en = 0;
+        io_scan[bit].stat = IO_SCAN_STAT_NO;
+    } else {
+        if (cmd->time != 0xffff) {
+            io_scan[bit].en = cmd->en ? IO_SCAN_STAT_EN_ALRAM : 0;
+            io_scan[bit].val = !!cmd->val;
+            io_scan[bit].sensitivity = 3000 - MIN(cmd->sensitivity *30,3000);
+            io_scan[bit].begintime = getTimerTick() + cmd->time / 2;
+            io_scan[bit].timelast = cmd->time / 2;
+            io_scan[bit].delay = cmd->delay;
             io_scan[bit].stat = IO_SCAN_STAT_NO;
-            io_scan[i].debouceCnt = 0;
+
         } else {
-            if (cmd->time != 0xffff) {
-                io_scan[bit].en = cmd->en ? IO_SCAN_STAT_EN_ALRAM : 0;
-                io_scan[bit].val = !!cmd->val;
-                io_scan[bit].begintime = getTimerTick() + cmd->time / 2;
-                io_scan[bit].timelast = cmd->time / 2;
-                io_scan[bit].stat = IO_SCAN_STAT_NO;
-                io_scan[i].debouceCnt = 0;
-            } else {
-                io_scan[bit].en = cmd->en ? IO_SCAN_STAT_EN_ALRAM : 0;
-                io_scan[bit].val = !!cmd->val;
-                //io_scan[bit].begintime =  getTimerTick() + cmd->time/2;
-                io_scan[bit].timelast = cmd->time;
-                io_scan[bit].stat = IO_SCAN_STAT_OK;
-                //io_scan[i].debouceCnt = 0;
-            }
+            io_scan[bit].en = cmd->en ? IO_SCAN_STAT_EN_ALRAM : 0;
+            io_scan[bit].val = !!cmd->val;
+            io_scan[bit].sensitivity  = 3000 - MIN(cmd->sensitivity * 30,3000);
+            io_scan[bit].begintime = getTimerTick() - 1;
+            io_scan[bit].timelast = cmd->time;
+            io_scan[bit].delay = cmd->delay;
+            io_scan[bit].stat = IO_SCAN_STAT_OK;
         }
     }
     return 0;
@@ -116,10 +114,10 @@ void CANCMD_set_alarm_enable(CAN_WP *wp) {
 
 
 void doCmdWp(CAN_WP *wp) {
-    if (CAN_WP_GET_ID(wp->desid)==0) {
+    if (CAN_WP_GET_ID(wp->desid) == 0) {
         return;
     }
-    if (DeviceCanAddr==0) {
+    if (DeviceCanAddr == 0) {
         return;
     }
     switch (wp->funcode) {

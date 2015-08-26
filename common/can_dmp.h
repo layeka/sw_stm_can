@@ -10,6 +10,7 @@
 #define CAN_WP_DEV_TYPE_INPUT   0x03UL
 #define CAN_WP_DEV_TYPE_QIFA    0x04UL
 #define CAN_WP_DEV_TYPE_SIFU    0x05UL
+#define CAN_WP_DEV_TYPE_CANHUB  0X06UL
 
 
 /**************config by user */
@@ -19,6 +20,8 @@
 #define DMP_DEV_TYPE   CAN_WP_DEV_TYPE_QIFA
 #elif defined(DMP_TYPE_MOTOR)
 #define DMP_DEV_TYPE   CAN_WP_DEV_TYPE_MOTOR
+#elif defined(DMP_TYPE_CANHUB)
+#define DMP_DEV_TYPE   CAN_WP_DEV_TYPE_CANHUB
 #else
 #error "must define DMP_DEV_XXX"
 #endif
@@ -28,6 +31,7 @@
 
 #define CANCMD_READSOFTVER       		0x01
 #define CANCMD_CHECKID				0X02
+#define CANCMD_READUID                          0X03
 #define CANCMD_BURNAPP                          0XF7
 #define CANCMD_ERASEFLASH                       0XF8
 #define CANCMD_SETADRR       			0XFD

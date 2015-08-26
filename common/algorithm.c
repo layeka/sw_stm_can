@@ -143,6 +143,26 @@ void bubbleSortAscend(int *buf, unsigned int nNum) {
 }
 
 
+#if 0
+int BinSearch(int sSource[], int array_size, int key)
+{
+	int low = 0, high = array_size - 1, mid;
+
+	while (low <= high)
+	{
+		mid = (low + high) / 2;//获取中间的位置
+
+		if (sSource[mid] == key)
+			return mid;	//找到则返回相应的位置
+		if (sSource[mid] > key)
+			high = mid - 1;	//如果比key大，则往低的位置查找
+		else
+			low = mid + 1;	//如果比key小，则往高的位置查找
+	}
+	return -1;
+}
+#endif
+
 
 
 

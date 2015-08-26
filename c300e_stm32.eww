@@ -5,6 +5,9 @@
     <path>$WS_DIR$\Projects_boot\bootloader.ewp</path>
   </project>
   <project>
+    <path>$WS_DIR$\Projects_canhub\canhub.ewp</path>
+  </project>
+  <project>
     <path>$WS_DIR$\Projects_input\input.ewp</path>
   </project>
   <project>
@@ -15,7 +18,42 @@
   </project>
   <batchBuild>
     <batchDefinition>
-      <name>build workspace</name>
+      <name>build all debug</name>
+      <member>
+        <project>bootloader</project>
+        <configuration>Debug_CanHub</configuration>
+      </member>
+      <member>
+        <project>bootloader</project>
+        <configuration>Debug_Input</configuration>
+      </member>
+      <member>
+        <project>bootloader</project>
+        <configuration>Debug_Motor</configuration>
+      </member>
+      <member>
+        <project>bootloader</project>
+        <configuration>Debug_Qifa</configuration>
+      </member>
+      <member>
+        <project>canhub</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>input</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>motor</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>qifa</project>
+        <configuration>Debug</configuration>
+      </member>
+    </batchDefinition>
+    <batchDefinition>
+      <name>build all release</name>
       <member>
         <project>bootloader</project>
         <configuration>Releas_Motor</configuration>
@@ -29,11 +67,23 @@
         <configuration>Release_Qifa</configuration>
       </member>
       <member>
+        <project>bootloader</project>
+        <configuration>Release_CanHub</configuration>
+      </member>
+      <member>
         <project>input</project>
         <configuration>Release</configuration>
       </member>
       <member>
         <project>qifa</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>canhub</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>motor</project>
         <configuration>Release</configuration>
       </member>
     </batchDefinition>

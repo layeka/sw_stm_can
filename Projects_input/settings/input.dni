@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=373279948
+Checksum=1533056977
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -36,6 +36,25 @@ ITMportsEnable=0
 ITMportsTermIO=0
 ITMportsLogFile=0
 ITMlogFile=$PROJ_DIR$\ITM.log
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Trace1]
+Enabled=0
+ShowSource=1
+[struct_types]
+Fmt0=CAN_WP-desid	4	0
+Fmt1=CAN_WP-srcid	4	0
+Fmt2=CanTxMsg-ExtId	4	0
+Fmt3=CanTxMsg-StdId	4	0
+[watch_formats]
+Fmt0={W}0:DeviceCanAddr	4	0
 [Trace2]
 Enabled=0
 ShowSource=0
@@ -57,6 +76,12 @@ Title0=I0
 Symbol0=0 4 1
 LiveEnabled=0
 LiveFile=PowerLogLive.log
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
 [EventLog]
 LogEnabled=0
 SumEnabled=0
@@ -71,6 +96,13 @@ Title2=Ch2
 Symbol2=0 4 1
 Title3=Ch3
 Symbol3=0 4 1
+SumSortOrder=0
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
 SumSortOrder=0
 [Log file]
 LoggingEnabled=_ 0
@@ -91,35 +123,10 @@ Mode=3
 Graph=0
 Symbiont=0
 Exclusions=
-[InterruptLog]
-LogEnabled=0
-SumEnabled=0
-GraphEnabled=0
-ShowTimeLog=1
-ShowTimeSum=1
-SumSortOrder=0
-[DataLog]
-LogEnabled=0
-SumEnabled=0
-GraphEnabled=0
-ShowTimeLog=1
-ShowTimeSum=1
 [Disassemble mode]
 mode=0
 [Breakpoints2]
 Count=0
-[Interrupts]
-Enabled=1
-[MemoryMap]
-Enabled=0
-Base=0
-UseAuto=0
-TypeViolation=1
-UnspecRange=1
-ActionState=1
 [Aliases]
 Count=0
 SuppressDialog=0
-[Trace1]
-Enabled=0
-ShowSource=1

@@ -90,7 +90,7 @@ void ioAlarmProcess(void) {
             case IO_SCAN_STAT_DEBOUNCE:
                 if (time >= io_scan[i].begintime && time <= io_scan[i].begintime + io_scan[i].timelast) {
                     if (Get_Io_Input(i) == io_scan[i].val) {
-                        if (io_scan[i].debouceCnt++ == IO_SCAN_DEBOUNCE_TIMES) {
+                        if (io_scan[i].debouceCnt++ >= io_scan[i].sensitivity) {
                             io_scan[i].stat = IO_SCAN_STAT_HOLD;
                         }
                     } else {
@@ -127,8 +127,10 @@ void ioAlarmProcess(void) {
                 break;
             case IO_SCAN_STAT_DEBOUNCE:
                 if (Get_Io_Input(i) != io_scan[i].val) {
-                    if (io_scan[i].debouceCnt++ == IO_SCAN_DEBOUNCE_TIMES) {
+                    if (io_scan[i].debouceCnt++ >= io_scan[i].sensitivity) {
                         io_scan[i].stat = IO_SCAN_STAT_ERR;
+                        io_scan[i].timertick = timerTick1ms;
+                        io_scan[i].debouceCnt = 0;
                         re |= 1 << i;
                     }
                 } else {
@@ -136,7 +138,8 @@ void ioAlarmProcess(void) {
                 }
                 break;
             case IO_SCAN_STAT_ERR:
-                if (Get_Io_Input(i) == io_scan[i].val) {
+                if (Get_Io_Input(i) == io_scan[i].val &&
+                    (timerTick1ms - io_scan[i].timertick) > io_scan[i].delay ) {
                     io_scan[i].stat = IO_SCAN_STAT_OK;
                 }
                 break;
@@ -208,8 +211,8 @@ void ioTesttimeProcess(void) {
         case IO_SCAN_STAT_TEST_FINISH:
             {
                 DEFINE_CAN_WP_FRAME (wpt);
-                //wpt.srcid = DeviceCanAddr;
                 wpt.desid = CAN_WP_ID_GROUP_BROADCAST(CAN_WP_DEV_TYPE_MAIN);
+                wpt.funcode = CANCMD_TEST_TIME;
                 wpt.dlc = 4;
                 wpt.data[0] = i;
                 wpt.data[1] = io_scan[i].val;
@@ -267,6 +270,7 @@ void ioScan() {
             case IO_SCAN_STAT_DEBOUNCE:
                 if (data != io_scan_scan[i].val) {
                     io_scan_scan[i].state = IO_SCAN_STAT_NO;
+                    io_scan_scan[i].val = data;
                 } else {
                     io_scan_scan[i].count++;
                     if (io_scan_scan[i].count >= IO_SCAN_TIMES) {

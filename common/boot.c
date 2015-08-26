@@ -31,8 +31,9 @@ void bootApp(){
 
 
 void bootAppToIap(){
-    __disable_irq();
+    //__disable_irq();
     BOOT_FLAG_APPTOIAP = POWERUP_APPTOIAP;
-    __set_MSP(*(__IO uint32_t *)IAPLICATION_ADDRESS);
-    ((void (*)())(*(unsigned int *)(IAPLICATION_ADDRESS + 4)))();
+    //__set_MSP(*(__IO uint32_t *)IAPLICATION_ADDRESS);
+    //((void (*)())(*(unsigned int *)(IAPLICATION_ADDRESS + 4)))();
+    NVIC_SystemReset();
 }

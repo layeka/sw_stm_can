@@ -5,7 +5,7 @@
     
     
     
-  <CurrentConfigs><Project>bootloader/Debug_Motor</Project><Project>input/Release</Project><Project>motor/Debug</Project><Project>qifa/Release</Project></CurrentConfigs><CurrentProj>motor</CurrentProj><OverviewSelected>0</OverviewSelected></ConfigDictionary>
+  <CurrentConfigs><Project>bootloader/Debug_CanHub</Project><Project>canhub/Debug</Project><Project>input/Debug</Project><Project>motor/Debug</Project><Project>qifa/Debug</Project></CurrentConfigs><CurrentProj>motor</CurrentProj><OverviewSelected>0</OverviewSelected></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -14,25 +14,25 @@
           
           
           
-        <Column0>193</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>434</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
         
         
         
-      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>915</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Find-in-Files</Factory></Window><Window><Factory>Debug-Log</Factory></Window></Windows></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>915</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
       <Find-in-Files>
         
         
         
         
-      <ColumnWidth0>516</ColumnWidth0><ColumnWidth1>62</ColumnWidth1><ColumnWidth2>566</ColumnWidth2><ColumnWidth3>251</ColumnWidth3></Find-in-Files>
-    <TerminalIO/><Breakpoints><col-names><item>Breakpoint</item><item>_I0</item></col-names><col-widths><item>500</item><item>35</item></col-widths><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></Breakpoints><Debug-Log><ColumnWidth0>22</ColumnWidth0><ColumnWidth1>1219</ColumnWidth1></Debug-Log></Static>
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window><Window><Factory>Debug-Log</Factory></Window></Windows></PreferedWindows><ColumnWidth0>519</ColumnWidth0><ColumnWidth1>62</ColumnWidth1><ColumnWidth2>566</ColumnWidth2><ColumnWidth3>251</ColumnWidth3></Find-in-Files>
+    <TerminalIO/><Breakpoints><col-names><item>Breakpoint</item><item>_I0</item></col-names><col-widths><item>500</item><item>35</item></col-widths><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></Breakpoints><Debug-Log><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window><Window><Factory>Find-in-Files</Factory></Window></Windows></PreferedWindows><ColumnWidth0>22</ColumnWidth0><ColumnWidth1>1219</ColumnWidth1></Debug-Log><Select-Ambiguous-Definitions><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window><Window><Factory>Find-in-Files</Factory></Window><Window><Factory>Debug-Log</Factory></Window><Window><Factory>Find-All-Declarations</Factory></Window></Windows></PreferedWindows><ColumnWidth0>440</ColumnWidth0><ColumnWidth1>62</ColumnWidth1><ColumnWidth2>754</ColumnWidth2></Select-Ambiguous-Definitions><Find-All-Declarations><ColumnWidth0>440</ColumnWidth0><ColumnWidth1>62</ColumnWidth1><ColumnWidth2>754</ColumnWidth2><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window><Window><Factory>Find-in-Files</Factory></Window><Window><Factory>Debug-Log</Factory></Window><Window><Factory>Select-Ambiguous-Definitions</Factory></Window></Windows></PreferedWindows></Find-All-Declarations></Static>
     <Windows>
       
       
-    <Wnd2>
+    <Wnd0>
         <Tabs>
           <Tab>
             <Identity>TabID-31103-18329</Identity>
@@ -40,40 +40,24 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>&lt;ws&gt;</ExpandedNode><ExpandedNode>bootloader</ExpandedNode><ExpandedNode>bootloader/COMMON</ExpandedNode><ExpandedNode>bootloader/ICF</ExpandedNode><ExpandedNode>bootloader/Output</ExpandedNode><ExpandedNode>bootloader/USER</ExpandedNode><ExpandedNode>input</ExpandedNode><ExpandedNode>input/CMSIS</ExpandedNode><ExpandedNode>input/COMMON</ExpandedNode><ExpandedNode>input/ICF</ExpandedNode><ExpandedNode>input/LIB</ExpandedNode><ExpandedNode>input/Output</ExpandedNode><ExpandedNode>input/STM32F0xx_StdPeriph_Driver</ExpandedNode><ExpandedNode>input/USER</ExpandedNode><ExpandedNode>motor</ExpandedNode><ExpandedNode>motor/CMSIS</ExpandedNode><ExpandedNode>motor/COMMON</ExpandedNode><ExpandedNode>motor/ICF</ExpandedNode><ExpandedNode>motor/LIB</ExpandedNode><ExpandedNode>motor/STM32F0xx_StdPeriph_Driver</ExpandedNode><ExpandedNode>motor/USER</ExpandedNode><ExpandedNode>qifa</ExpandedNode><ExpandedNode>qifa/CMSIS</ExpandedNode><ExpandedNode>qifa/COMMON</ExpandedNode><ExpandedNode>qifa/ICF</ExpandedNode><ExpandedNode>qifa/Output</ExpandedNode><ExpandedNode>qifa/USER</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>&lt;ws&gt;</ExpandedNode><ExpandedNode>bootloader</ExpandedNode><ExpandedNode>bootloader/COMMON</ExpandedNode><ExpandedNode>bootloader/Output</ExpandedNode><ExpandedNode>bootloader/USER</ExpandedNode><ExpandedNode>canhub</ExpandedNode><ExpandedNode>canhub/COMMON</ExpandedNode><ExpandedNode>canhub/LIB</ExpandedNode><ExpandedNode>canhub/LIB/CMSIS</ExpandedNode><ExpandedNode>canhub/Output</ExpandedNode><ExpandedNode>canhub/USER</ExpandedNode><ExpandedNode>input</ExpandedNode><ExpandedNode>input/CMSIS</ExpandedNode><ExpandedNode>input/COMMON</ExpandedNode><ExpandedNode>input/STM32F0xx_StdPeriph_Driver</ExpandedNode><ExpandedNode>input/USER</ExpandedNode><ExpandedNode>motor</ExpandedNode><ExpandedNode>motor/CMSIS</ExpandedNode><ExpandedNode>motor/COMMON</ExpandedNode><ExpandedNode>motor/ICF</ExpandedNode><ExpandedNode>motor/LIB</ExpandedNode><ExpandedNode>motor/LIB/CMSIS</ExpandedNode><ExpandedNode>motor/Output</ExpandedNode><ExpandedNode>motor/STM32F0xx_StdPeriph_Driver</ExpandedNode><ExpandedNode>motor/USER</ExpandedNode><ExpandedNode>qifa</ExpandedNode><ExpandedNode>qifa/CMSIS</ExpandedNode><ExpandedNode>qifa/COMMON</ExpandedNode><ExpandedNode>qifa/ICF</ExpandedNode><ExpandedNode>qifa/Output</ExpandedNode><ExpandedNode>qifa/USER</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
-        <Tabs>
-          <Tab>
-            <Identity>TabID-8017-21628</Identity>
-            <TabName>Build</TabName>
-            <Factory>Build</Factory>
-            <Session/>
-          </Tab>
-          <Tab>
-            <Identity>TabID-28974-12620</Identity>
-            <TabName>Find in Files</TabName>
-            <Factory>Find-in-Files</Factory>
-            <Session/>
-          </Tab>
-        <Tab><Identity>TabID-25347-32458</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
-        
-      <SelectedTab>2</SelectedTab></Wnd3></Windows>
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1><Tabs><Tab><Identity>TabID-20761-27576</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-5003-26740</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab><Tab><Identity>TabID-21816-28676</Identity><TabName>Ambiguous Definitions</TabName><Factory>Select-Ambiguous-Definitions</Factory><Session/></Tab><Tab><Identity>TabID-4922-7073</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd1></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\can_dmp.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>6</YPos2><SelStart2>325</SelStart2><SelEnd2>325</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\can.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>155</YPos2><SelStart2>5684</SelStart2><SelEnd2>5684</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\boot.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>170</SelStart2><SelEnd2>170</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_tim.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>2519</YPos2><SelStart2>98883</SelStart2><SelEnd2>98883</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\stm32f0xx_it.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>63</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\can_dmp.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>8</YPos2><SelStart2>822</SelStart2><SelEnd2>822</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_boot\USER\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>3</YPos2><SelStart2>392</SelStart2><SelEnd2>392</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\algorithm.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>27</YPos2><SelStart2>986</SelStart2><SelEnd2>986</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\cancmd.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>220</YPos2><SelStart2>7092</SelStart2><SelEnd2>7092</SelEnd2></Tab><ActiveTab>8</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\cancmd.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>34</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>76</YPos2><SelStart2>667</SelStart2><SelEnd2>667</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\algorithm.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>163</YPos2><SelStart2>3799</SelStart2><SelEnd2>3799</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\can_wp.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>5</YPos2><SelStart2>424</SelStart2><SelEnd2>424</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\step.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>44</YPos2><SelStart2>1829</SelStart2><SelEnd2>1829</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\step.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>82</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>18</YPos2><SelStart2>881</SelStart2><SelEnd2>881</SelEnd2></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-01cc3638><key>iaridepm.enu1</key></Toolbar-01cc3638></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>470</Bottom><Right>284</Right><x>-2</x><y>-2</y><xscreen>112</xscreen><yscreen>47</yscreen><sizeHorzCX>87500</sizeHorzCX><sizeHorzCY>65460</sizeHorzCY><sizeVertCX>223438</sizeVertCX><sizeVertCY>657382</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>203</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>205</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>285515</sizeHorzCY><sizeVertCX>87500</sizeVertCX><sizeVertCY>65460</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00564ea0><key>iaridepm.enu1</key></Toolbar-00564ea0></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>480</Bottom><Right>525</Right><x>-2</x><y>-2</y><xscreen>165</xscreen><yscreen>144</yscreen><sizeHorzCX>128906</sizeHorzCX><sizeHorzCY>200557</sizeHorzCY><sizeVertCX>411719</sizeVertCX><sizeVertCY>671309</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>193</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>195</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>271588</sizeHorzCY><sizeVertCX>189844</sizeVertCX><sizeVertCY>487465</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

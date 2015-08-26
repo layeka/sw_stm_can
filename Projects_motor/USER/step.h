@@ -99,8 +99,8 @@ typedef struct __midustepctrpra{
 
 
   uint8_t    MotoRunDir;            //dir
-  uint8_t    MotoStopData;
-  uint8_t    MotoZeroData;
+  uint64_t    MotoStopData;
+  uint64_t    MotoZeroData;
   //uint8_t    MotoZeroState[3];      // 连续3次的马达零位，0上上次零位状态，1澹:上次，2当前零位状态
   //uint8_t    MotoStopData[3];       //停止条件 与MotoZeroState对应
                                     //  MotoStopData与MotoZeroState 相等时停止并清零PULE，DANGQIANDUMU等数据

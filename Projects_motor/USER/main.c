@@ -16,6 +16,7 @@
 
 
 int main(void) {
+    SystemCoreClockUpdate();
     appAvailableFlagNotOptimiz();
     memcpy((void *)0x20000000, (void *)(APPLICATION_ADDRESS), 48 * 4); //copy vectortable
     /* Enable the SYSCFG peripheral clock*/
@@ -24,7 +25,7 @@ int main(void) {
     SYSCFG_MemoryRemapConfig(SYSCFG_MemoryRemap_SRAM);
     Flash_Device_ID_STM = Get_Flash_ID();
     __enable_irq();
-    SystemInit();
+
     LedInit();
     ledRunSetState(LED_STAT_NOTREGEST);
     AnniuInit();
@@ -33,6 +34,7 @@ int main(void) {
     timerTick1msInit();
     TIM2_Config();
     TIM2_PWM_OUTPUT();
+    dmpIapToAppReturn();
     MotoDuMuInit();
 
     while (1) {

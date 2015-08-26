@@ -95,9 +95,12 @@ uint8_t Can_sendup_enable;		//符合状态向上发送 使能标志
 typedef struct __io_scan{
     unsigned char en;
     unsigned char val;
+    unsigned long long timertick;
     unsigned long long begintime;
     unsigned int timelast;
-    unsigned int debouceCnt;
+    int debouceCnt;
+    int sensitivity;
+    int delay;
     unsigned int stat;
 }IO_SCAN;
 

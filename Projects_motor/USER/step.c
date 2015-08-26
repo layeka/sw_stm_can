@@ -53,21 +53,20 @@ void ResetDumu(uint8_t moto, uint8_t flag) {
     MiduMotoRefCtr(moto, ENABLE);
     ringBufClear(&motorcmdbuf[moto]);
     if (flag & (1 << 7)) { //lock or free
-        MiduMotoFreeCtr(moto,DISABLE );
-        MiduMotoCtrPra[moto].MotoRunState = MOTOSTOPHALF ;
-    }else{
-        MiduMotoFreeCtr(moto,ENABLE);
+        MiduMotoFreeCtr(moto, DISABLE);
+        MiduMotoCtrPra[moto].MotoRunState = MOTOSTOPHALF;
+    } else {
+        MiduMotoFreeCtr(moto, ENABLE);
         MiduMotoCtrPra[moto].MotoRunState = MOTOSTOPFREE;
     }
-    MiduMotoCtrPra[moto].MotoZeroData = 0;
+    /*MiduMotoCtrPra[moto].MotoZeroData = 0;
     for (int i = 0; i < 3; i++) {
         MiduMotoCtrPra[moto].MotoZeroData |= GetMiduMotoZero(moto) << i;
-    }
+    }*/
     MiduMotoCtrPra[moto].MotoDumuDangqian = 0;
     MiduMotoCtrPra[moto].MotoDumuPuls = 0;
     MiduMotoCtrPra[moto].MotoPwmPinState = 0;
     MiduMotoCtrPra[moto].ProbeEn = 0;
-    MiduMotoCtrPra[moto].MotoStopData = 0;
     MiduMotoCtrPra[moto].MotoRunCmpValue = GetMotoCmpValue(MIDUMOTOBEGINHZ);
     MiduMotoCtrPra[moto].MotoRunHz = MIDUMOTOBEGINHZ;
     MiduMotoCtrPra[moto].MotoRunSetHz = MIDUMOTOBEGINHZ;
@@ -131,7 +130,7 @@ void MotoDumuProcess(uint8_t Moto) {
         if (MiduMotoCtrPra[Moto].MotoDumuPuls % 2 == 0) {
             MiduMotoCtrPra[Moto].MotoZeroData = MiduMotoCtrPra[Moto].MotoZeroData << 1 | GetMiduMotoZero(Moto);
             if (MiduMotoCtrPra[Moto].ProbeEn == 1 &&
-                (MiduMotoCtrPra[Moto].MotoZeroData & 0x07) == (MiduMotoCtrPra[Moto].MotoStopData & 0x07)) {
+                MiduMotoCtrPra[Moto].MotoZeroData == MiduMotoCtrPra[Moto].MotoStopData) {
                 //满足零位条件，//结束进入半流 并关闭中断，清PLUS，坐标
                 MiduMotoCtrPra[Moto].stopFlag |= 0x01;
                 MiduMotoCtrPra[Moto].MotoRunState = MOTOSTOPHALF;
@@ -185,6 +184,8 @@ void MotoDumuProcess(uint8_t Moto) {
 
 void MotoDumuRun(uint8_t Moto, uint8_t flag, uint16_t Plus, uint16_t HzMax, uint8_t stopdata) {
     uint32_t capture;
+    uint64_t stopdatall = 0;
+    uint8_t stopdataval, stopdatashift;
     if (Plus == 0) {
         return;
     }
@@ -195,17 +196,23 @@ void MotoDumuRun(uint8_t Moto, uint8_t flag, uint16_t Plus, uint16_t HzMax, uint
     MiduMotoCtrPra[Moto].cmd_stopState = (flag & MOTOR_CMDGO_FLAG_STATE) >> MOTOR_CMDGO_FLAG_STATE_SHIFT;
 
     MiduMotoCtrPra[Moto].MotoDumuPuls = Plus * 2;
-    MiduMotoCtrPra[Moto].MotoStopData = stopdata;
+
+    stopdataval = !!(stopdata & 0x03);
+    stopdatashift = stopdata >> 2;
+    if (stopdataval) {
+        stopdatall = (1 << stopdatashift) - 1;
+    } else {
+        stopdatall = -1LL;
+        stopdatall <<= stopdatashift;
+    }
+    MiduMotoCtrPra[Moto].MotoStopData = stopdatall;
     MiduMotoCtrPra[Moto].MotoRunSetHz = HzMax;
 
     MiduMotoCtrPra[Moto].stopFlag = 0;
     MiduMotoCtrPra[Moto].clearPosFlag = 0;
 
     MiduMotoDirCtr(Moto, MiduMotoCtrPra[Moto].MotoRunDir);
-    MiduMotoCtrPra[Moto].MotoZeroData = 0;
-    for (int i = 0; i < 3; i++) {
-        MiduMotoCtrPra[Moto].MotoZeroData |= GetMiduMotoZero(Moto) << i;
-    }
+    MiduMotoCtrPra[Moto].MotoZeroData = (uint64_t)(-(uint64_t)GetMiduMotoZero(Moto));
 
     MiduMotoStepCtr(Moto, OUT_DOWN);
 
@@ -472,7 +479,15 @@ void MiduMotoStepCtr(uint8_t Moto, uint8_t NewState) {
     }
 }
 uint8_t GetMiduMotoZero(uint8_t Moto) {
-    return(GPIO_ReadInputDataBit(MiduMotoZero[Moto].port, MiduMotoZero[Moto].bit));
+    uint8_t val[3];
+    for (int i=0;i<3;i++) {
+        val[i] = GPIO_ReadInputDataBit(MiduMotoZero[Moto].port, MiduMotoZero[Moto].bit);
+    }
+    if (val[0]+val[1]+val[2]>=2) {
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 

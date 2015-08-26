@@ -22,21 +22,23 @@
 
 
 
-typedef struct __can_cmd_set_alarm{
+typedef struct __can_cmd_set_alarm {
     unsigned char bit:7;
     unsigned char en:1;
     unsigned char val;
     unsigned short time;
-}CAN_CMD_SET_ALARM;
+    unsigned short sensitivity;
+    unsigned short delay;
+}CAN_CMD_SET_ALARM; 
 
 
-typedef struct __can_cmd_alarm{
+typedef struct __can_cmd_alarm {
     unsigned char bit;
     unsigned char val;
 }CAN_CMD_ALARM;
 
 
-typedef struct __can_cmd_test_time{
+typedef struct __can_cmd_test_time {
     unsigned char bit;
     unsigned char val;
     unsigned short timeout;
@@ -46,7 +48,7 @@ typedef struct __can_cmd_test_time{
 
 extern uint8_t CanCmd_SendAlarm(void);
 
-extern void  ScanCmd(void);
+extern void ScanCmd(void);
 
 extern void DoTongYongCmd(void);
 

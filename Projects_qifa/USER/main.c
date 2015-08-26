@@ -15,6 +15,7 @@
 
 
 int main(void) {
+    SystemCoreClockUpdate();
     appAvailableFlagNotOptimiz();
     memcpy((void *)0x20000000, (void *)(APPLICATION_ADDRESS), 48 * 4); //copy vectortable
     /* Enable the SYSCFG peripheral clock*/
@@ -22,8 +23,7 @@ int main(void) {
     /* Remap SRAM at 0x00000000 */
     //SYSCFG_MemoryRemapConfig(SYSCFG_MemoryRemap_Flash);
     SYSCFG_MemoryRemapConfig(SYSCFG_MemoryRemap_SRAM);
-    //系统外部时钟8M,PLL6倍，48M
-    SystemInit();
+
     __enable_irq();
     Flash_Device_ID_STM = Get_Flash_ID();
 

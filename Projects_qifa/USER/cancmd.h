@@ -15,13 +15,13 @@
 
 
 
-#define CANCMD_SETPWMEN       		0x0021
-#define CANCMD_SETQIFAEN      		0x0022
-#define CANCMD_QIFARST        		0x0023
-#define CANCMD_SETPWMVALUE    		0x0024
-#define CANCMD_QIFADRV        		0x0025
-#define CANCMD_READALARM      		0x0028
-#define CANCMD_READQIFA1TO16  		0x0029
+#define CANCMD_SETPWMEN       		0x21
+#define CANCMD_SETQIFAEN      		0x22
+#define CANCMD_QIFARST        		0x23
+#define CANCMD_SETPWMVALUE    		0x24
+#define CANCMD_QIFADRV        		0x25
+#define CANCMD_READALARM      		0x28
+#define CANCMD_READQIFA1TO16  		0x29
 //#define CANCMD_READQIFA65TO80 		0x002a
 #define CANCMD_SENDALARM      		0x002b
 //单个气阀测试 单个气阀动作时测量气阀的阻值并上报到主板

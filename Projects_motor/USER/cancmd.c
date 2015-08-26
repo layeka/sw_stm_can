@@ -227,7 +227,7 @@ void scanMotorCmd(void) {
                     || MiduMotoCtrPra[i].MotoRunState == MOTOSTOPFREE) {
                     ringBufPop_noread(&motorcmdbuf[i]);
                     if (cmd->flag & MOTOR_CMDGO_RETURN_FLAG_RETURN) {
-                        unsigned char stopflag = MiduMotoCtrPra[i].MotoStopData;
+                        //unsigned char stopflag = MiduMotoCtrPra[i].MotoStopData;
                         uint16_t timedif = timerTick1ms - cmd->timertick;
                         DEFINE_CAN_WP_FRAME(wpt);
                         wpt.funcode = CANCMD_DUMUMOTOGO_LOW;
@@ -244,7 +244,7 @@ void scanMotorCmd(void) {
                         flag |= MiduMotoCtrPra[i].clearPosFlag << MOTOR_CMDGO_FLAG_CLEAR_POS_SHIFT;
                         flag |= MiduMotoCtrPra[i].stopFlag;
                         wpt.data[5] = flag;
-                        wpt.data[6] = stopflag;
+                        wpt.data[6] = cmd->stopData;
                         wpt.data[7] = cmd->cmdcode;
                         wpSend(&wpt);
                     }

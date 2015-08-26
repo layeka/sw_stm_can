@@ -5,6 +5,8 @@ const char Ver[] = { "SoftVer-B.SINA.PB-A.01.00.00&"__DATE__ };
 const char Ver[] = { "SoftVer-B.SQFA.PB-A.01.00.00&"__DATE__ };
 #elif defined(DMP_TYPE_MOTOR)
 const char Ver[] = { "SoftVer-B.SBJA.PB-A.01.00.00&"__DATE__ };
+#elif defined(DMP_TYPE_CANHUB)
+const char Ver[] = { "SoftVer-B.SHBA.PB-A.01.00.00&"__DATE__ };
 #else
 #error "must define DMP_DEV_XXX"
 #endif

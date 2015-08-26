@@ -19,6 +19,6 @@
 @REM 
 
 
-"D:\Program Files\IAR Systems\Embedded Workbench 6.5\common\bin\cspybat" "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\bin\armproc.dll" "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\bin\armsim2.dll"  %1 --plugin "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\bin\armbat.dll" --macro "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\config\debugger\ST\STM32F05xxx_06xxx.dmac" --backend -B "--endian=little" "--cpu=Cortex-M0" "--fpu=None" "-p" "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\CONFIG\debugger\ST\STM32F042x6.ddf" "--semihosting=none" "--device=STM32F042x6" 
+"D:\Program Files\IAR Systems\Embedded Workbench 6.5\common\bin\cspybat" "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\bin\armproc.dll" "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\bin\armjlink.dll"  %1 --plugin "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\bin\armbat.dll" --macro "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\config\debugger\ST\STM32F05xxx_06xxx.dmac" --flash_loader "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\config\flashloader\ST\FlashSTM32F042x6.board" --backend -B "--endian=little" "--cpu=Cortex-M0" "--fpu=None" "-p" "D:\Program Files\IAR Systems\Embedded Workbench 6.5\arm\config\debugger\ST\STM32F042x6.ddf" "--semihosting" "--device=STM32F042x6" "--drv_communication=USB0" "--jlink_speed=auto" "--jlink_initial_speed=32" "--jlink_reset_strategy=0,0" "--jlink_interface=SWD" "--drv_catch_exceptions=0x000" "--drv_swo_clock_setup=72000000,0,2000000" 
 
 
