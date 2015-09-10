@@ -10,6 +10,7 @@
 
 
 #define CAN_WP_FUNCODE_HEARDBEAT   0xfe
+#define CAN_WP_FUNCODE_HEARDBEATEN  0xfc
 
 
 

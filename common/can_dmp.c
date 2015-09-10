@@ -57,6 +57,31 @@ static void heartbeat(CAN_WP *wp){
 }
 
 
+bool heartbeaten = false;
+unsigned char heartbeatspan = 100;
+
+static void heartbeatEn(CAN_WP *wp){
+    if(DeviceCanAddr==0){
+        return;
+    }
+    if(wp->dlc==0) return;
+    DEFINE_CAN_WP_FRAME(twp);
+    twp.funcode = wp->funcode;
+    twp.desid = wp->srcid;
+    twp.dlc = 2;
+    if(wp->data[0]){
+        heartbeaten = true;
+        twp.data[0]= (uint8)500;
+        twp.data[1]= (uint8)(500>>8);
+    }else{
+        heartbeaten = false;
+        twp.data[0]= 0;
+        twp.data[1]= 0;
+    }
+    wpSend(&twp);
+}
+
+
 extern __weak void doCmdWp(CAN_WP *wp);
 
 void ScanCmd(void) {
@@ -67,6 +92,8 @@ void ScanCmd(void) {
             CANRxMSG_TO_CANWP(&wp, &msg);
             if(wp.funcode==CAN_WP_FUNCODE_HEARDBEAT){
                 heartbeat(&wp);
+            }else if(wp.funcode==CAN_WP_FUNCODE_HEARDBEATEN){
+                heartbeatEn(&wp);
             }else{
                 doCmdWp(&wp);
             }
@@ -329,6 +356,7 @@ uint8_t dmpSetAddr(CAN_DMP *dmp) {
         DeviceCanAddr = 0;
         ledRunSetState(LED_STAT_NOTREGEST);
         canClearfilter(1 << 2 | 1 << 3 | 1 << 4);
+        heartbeaten = false;
     }
     DEFINE_CAN_DMP_FRAME(dmpt);
     dmpt.dlc = 3;

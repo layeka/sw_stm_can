@@ -51,7 +51,7 @@ int main(void) {
     dmpIapToAppReturn();
     while (1) {
         ScanCmd();
-        ledProcess();
+        //ledProcess();
         ScanAlarm();
         QifaRstProcess();
         if ((ADC_Value.end == 1) && (ADC_Value.Start_enable == 0)) {

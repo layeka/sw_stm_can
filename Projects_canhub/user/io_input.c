@@ -41,6 +41,9 @@ void Io_input_Init(void) {
 
 
 
+
+
+
 //»ñµÃ¹Ü½ÅIO ×´Ì¬
 uint8_t Get_Io_Input(uint8_t num) {
     return(GPIO_ReadInputDataBit(Input_Single[num].port, Input_Single[num].bit));

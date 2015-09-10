@@ -14,6 +14,7 @@
 #include "can_dmp.h"
 #include "output.h"
 #include "temperature.h"
+#include "lcdbl.h"
 
 
 
@@ -38,6 +39,7 @@ int main(void) {
     dmpIapToAppReturn();
     io_scan_init();
     outputInit();
+    LcdBlInit();
     temperaInit();
     temperaAdcStart();
 

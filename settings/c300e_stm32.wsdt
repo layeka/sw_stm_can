@@ -5,7 +5,7 @@
     
     
     
-  <CurrentConfigs><Project>bootloader/Debug_CanHub</Project><Project>canhub/Debug</Project><Project>input/Debug</Project><Project>motor/Debug</Project><Project>qifa/Debug</Project></CurrentConfigs><CurrentProj>motor</CurrentProj><OverviewSelected>0</OverviewSelected></ConfigDictionary>
+  <CurrentConfigs><Project>bootloader/Debug_Qifa</Project><Project>canhub/Debug</Project><Project>input/Debug</Project><Project>motor/Debug</Project><Project>qifa/Debug</Project></CurrentConfigs><CurrentProj>canhub</CurrentProj><OverviewSelected>0</OverviewSelected></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -14,7 +14,7 @@
           
           
           
-        <Column0>434</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>341</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -50,14 +50,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_motor\USER\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>18</YPos2><SelStart2>881</SelStart2><SelEnd2>881</SelEnd2></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_canhub\user\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>8</YPos2><SelStart2>1013</SelStart2><SelEnd2>1013</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_canhub\user\io_input.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>54</YPos2><SelStart2>1615</SelStart2><SelEnd2>1615</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\can_dmp.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>332</SelStart2><SelEnd2>332</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_canhub\user\cancmd.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>133</YPos2><SelStart2>4054</SelStart2><SelEnd2>4054</SelEnd2></Tab><ActiveTab>3</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00564ea0><key>iaridepm.enu1</key></Toolbar-00564ea0></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>480</Bottom><Right>525</Right><x>-2</x><y>-2</y><xscreen>165</xscreen><yscreen>144</yscreen><sizeHorzCX>128906</sizeHorzCX><sizeHorzCY>200557</sizeHorzCY><sizeVertCX>411719</sizeVertCX><sizeVertCY>671309</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>193</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>195</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>271588</sizeHorzCY><sizeVertCX>189844</sizeVertCX><sizeVertCY>487465</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00e94ea0><key>iaridepm.enu1</key></Toolbar-00e94ea0></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>492</Bottom><Right>432</Right><x>-2</x><y>-2</y><xscreen>136</xscreen><yscreen>82</yscreen><sizeHorzCX>106250</sizeHorzCX><sizeHorzCY>114206</sizeHorzCY><sizeVertCX>339063</sizeVertCX><sizeVertCY>688022</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>181</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>183</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>254875</sizeHorzCY><sizeVertCX>156250</sizeVertCX><sizeVertCY>278552</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

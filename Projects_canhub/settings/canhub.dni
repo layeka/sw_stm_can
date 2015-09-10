@@ -21,7 +21,7 @@ ActionState=1
 Enabled=0
 ShowSource=1
 [DebugChecksum]
-Checksum=-286165204
+Checksum=2012748505
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -48,6 +48,8 @@ ITMportsEnable=0
 ITMportsTermIO=0
 ITMportsLogFile=0
 ITMlogFile=$PROJ_DIR$\ITM.log
+[array_types]
+Fmt0=unsigned char[8]	3	0
 [watch_formats]
 Fmt0={W}0:io_bitmap	4	0
 Fmt1={W}0:outputval	4	0

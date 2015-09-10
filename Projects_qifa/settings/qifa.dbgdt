@@ -19,7 +19,7 @@
           
           
           
-        <Column0>143</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>236</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Disassembly>
         <col-names>
@@ -39,7 +39,7 @@
       
       
       
-    <Wnd1>
+    <Wnd0>
         <Tabs>
           <Tab>
             <Identity>TabID-4930-6021</Identity>
@@ -51,7 +51,7 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1><Wnd2>
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd4>
         <Tabs>
           <Tab>
             <Identity>TabID-15678-6024</Identity>
@@ -61,20 +61,20 @@
           </Tab>
         <Tab><Identity>TabID-29250-21001</Identity><TabName>Locals</TabName><Factory>Locals</Factory></Tab><Tab><Identity>TabID-23974-18974</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab><Tab><Identity>TabID-11223-16702</Identity><TabName>Register</TabName><Factory>Register</Factory><Session><REG1>0</REG1><REG2>0</REG2><Group>20</Group><States>1</States><State0>RCC__CFGR</State0></Session></Tab></Tabs>
         
-      <SelectedTab>1</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-21596-19373</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+      <SelectedTab>1</SelectedTab></Wnd4><Wnd5><Tabs><Tab><Identity>TabID-21596-19373</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd5></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_boot\USER\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>9</YPos2><SelStart2>793</SelStart2><SelEnd2>793</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\system_stm32f0xx.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>140</YPos2><SelStart2>6037</SelStart2><SelEnd2>6037</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\boot.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>3</YPos2><SelStart2>457</SelStart2><SelEnd2>457</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_qifa\USER\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>297</SelStart2><SelEnd2>318</SelEnd2></Tab><ActiveTab>3</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\can_dmp.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>346</YPos2><SelStart2>9742</SelStart2><SelEnd2>9742</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_qifa\USER\SWQF_OUTPUT.C</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>85</YPos2><SelStart2>3419</SelStart2><SelEnd2>3419</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\anniuled.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>29</YPos2><SelStart2>1127</SelStart2><SelEnd2>1127</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_qifa\USER\stm32f0xx_it.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>72</YPos2><SelStart2>2000</SelStart2><SelEnd2>2000</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_qifa\USER\Check_Qifa_Res_ADC.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>129</YPos2><SelStart2>4632</SelStart2><SelEnd2>4632</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common\anniuled.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>53</YPos2><SelStart2>2069</SelStart2><SelEnd2>2069</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Projects_qifa\USER\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>1</YPos2><SelStart2>275</SelStart2><SelEnd2>275</SelEnd2></Tab><ActiveTab>6</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00ea3638><key>iaridepm.enu1</key></Toolbar-00ea3638><Toolbar-11afe448><key>debuggergui.enu1</key></Toolbar-11afe448></Sizes></Row0><Row1><Sizes><Toolbar-11b00068><key>armjlink.enu1</key></Toolbar-11b00068></Sizes></Row1></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>451</Bottom><Right>234</Right><x>-2</x><y>-2</y><xscreen>243</xscreen><yscreen>350</yscreen><sizeHorzCX>189844</sizeHorzCX><sizeHorzCY>487465</sizeHorzCY><sizeVertCX>184375</sizeVertCX><sizeVertCY>630919</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>451</Bottom><Right>350</Right><x>-2</x><y>-2</y><xscreen>243</xscreen><yscreen>350</yscreen><sizeHorzCX>189844</sizeHorzCX><sizeHorzCY>487465</sizeHorzCY><sizeVertCX>275000</sizeVertCX><sizeVertCY>630919</sizeVertCY></Rect></Wnd2></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>200</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>278552</sizeHorzCY><sizeVertCX>156250</sizeVertCX><sizeVertCY>278552</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-01c34ea0><key>iaridepm.enu1</key></Toolbar-01c34ea0><Toolbar-15de3598><key>debuggergui.enu1</key></Toolbar-15de3598></Sizes></Row0><Row1><Sizes><Toolbar-0ef56ba0><key>armjlink.enu1</key></Toolbar-0ef56ba0></Sizes></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>143</Bottom><Right>327</Right><x>-2</x><y>-2</y><xscreen>243</xscreen><yscreen>350</yscreen><sizeHorzCX>230332</sizeHorzCX><sizeHorzCY>853659</sizeHorzCY><sizeVertCX>311848</sizeVertCX><sizeVertCY>353659</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>143</Bottom><Right>350</Right><x>-2</x><y>-2</y><xscreen>243</xscreen><yscreen>350</yscreen><sizeHorzCX>230332</sizeHorzCX><sizeHorzCY>853659</sizeHorzCY><sizeVertCX>333649</sizeVertCX><sizeVertCY>353659</sizeVertCY></Rect></Wnd4></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1057</Right><x>-2</x><y>-2</y><xscreen>1059</xscreen><yscreen>200</yscreen><sizeHorzCX>1003791</sizeHorzCX><sizeHorzCY>487805</sizeHorzCY><sizeVertCX>189573</sizeVertCX><sizeVertCY>487805</sizeVertCY></Rect></Wnd5></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 

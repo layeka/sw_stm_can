@@ -82,6 +82,9 @@ void SysTick_Handler(void) {
     timerTick05ms++;
     if (timerTick05ms % 2 == 0) {
         timerTick1ms++;
+        static unsigned char a= 0 ;
+        a = !a;
+        LedCtr_RUN_ERR(a,a );
 
         //qifa power save pwm open
         if (Qifa_state.PWM_Close_Time_Count && (Qifa_state.Out_PWM_Enable == ENABLE)) {

@@ -25,9 +25,7 @@ int main(void) {
 
     timerTick1msInit();
     LedInit();
-    //AnniuInit();
     ledRunSetState(LED_STAT_BOOT);
-
     candmpInit();
     Canini();
     __enable_irq();

@@ -11,6 +11,7 @@
 #include "algorithm.h"
 #include "can_dmp.h"
 #include "can_wp.h"
+#include "lcdbl.h"
 
 
 
@@ -147,7 +148,7 @@ void  CANCMD_ledout(CAN_WP *wp){
    if (wp->dlc != 1) {
         return;
     }
-   outputDrive(4, wp->data[0]);
+   LcdBlCtr(wp->data[0]);
 }
 
 
